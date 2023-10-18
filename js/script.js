@@ -17,6 +17,7 @@ function menuMobile() {
         })
 }
 
+
 menuMobile();
 
 // PortFolio
@@ -26,18 +27,18 @@ function tabsFilters() {
     const projets = document.querySelectorAll(".portfolio .card");
 
     resetActiveLinks = () => {
-        tabs.forEach(element => {
-            element.classList.remove("active");
+        tabs.forEach(elem => {
+            elem.classList.remove("active");
         })
     }
 
-    const showProjets = (element) => {
-        console.log(element);
+    const showProjets = (elem) => {
+        console.log(elem);
         projets.forEach(projet => {
 
             let filter = projet.getAttribute('data-category');
 
-            if (element === 'all') {
+            if (elem === 'all') {
                 projet.parentNode.classList.remove('hide');
                 return
             }
@@ -51,13 +52,13 @@ function tabsFilters() {
         })
     }
 
-    tabs.forEach(element => {
-        element.addEventListener('click', (event) => {
+    tabs.forEach(elem => {
+        elem.addEventListener('click', (event) => {
             event.preventDefault();
-            let filter = element.getAttribute('data-filter');
+            let filter = elem.getAttribute('data-filter');
             showProjets(filter);
             resetActiveLinks();
-            element.classList.add('active');
+            elem.classList.add('active');
         })
     })
 }
@@ -76,10 +77,10 @@ function showProjectDetails() {
         })
     }
 
-    links.forEach(element => {
-        element.addEventListener('click', (event) => {
+    links.forEach(elem=> {
+        elem.addEventListener('click', (event) => {
             event.preventDefault();
-            document.querySelector(`[id=${element.dataset.id}]`).classList.add("show");
+            document.querySelector(`[id=${elem.dataset.id}]`).classList.add("show");
         })
     });
 
@@ -105,17 +106,17 @@ const observerIntersectionAnimation = () => {
     section.style.transition = "all 1.6s";
   });
 
-  skills.forEach((element, index) => {
+  // skills.forEach((element, index) => {
 
-    element.style.width = "0";
-    element.style.transition = "all 1.6s";
-  });
+  //   element.style.width = "0";
+  //   element.style.transition = "all 1.6s";
+  // });
 
   let sectionObserver = new IntersectionObserver(function (entries, observer) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        let element = entry.target;
-        element.style.opacity = 1;
+        let elem = entry.target;
+        elem.style.opacity = 1;
       }
     });
   });
@@ -127,8 +128,8 @@ const observerIntersectionAnimation = () => {
   let skillsObserver = new IntersectionObserver(function (entries, observer) {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        let element = entry.target;
-        element.style.width = element.dataset.width + '%';
+        let elem = entry.target;
+        elem.style.width = elem.dataset.width + '%';
       }
     });
   });
@@ -136,6 +137,7 @@ const observerIntersectionAnimation = () => {
   skills.forEach(skill => {
     skillsObserver.observe(skill);
   });
+  
 }
 
 observerIntersectionAnimation();
